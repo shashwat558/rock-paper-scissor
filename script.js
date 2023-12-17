@@ -12,7 +12,7 @@ function getComputerChoice() {
     return moveArray[randomMove];
 
 }
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
     let computerSelection = getComputerChoice();
     if(playerSelection === computerSelection) {
         roundWinner = "tie";
@@ -33,11 +33,8 @@ function playRound(playerSelection, computerSelection) {
 
     if((computerScore === 5) || (playerScore === 5)){
         endGame();
-        startNew = () => {
-            playerScore = 0;
-            computerScore = 0;
-            console.log("Starting a new Game")
-        }
+        setTimeout(startNew, 2000)
+      
     }
 
 
@@ -48,6 +45,12 @@ function endGame(){
     console.log("Game Over")
     console.log(`Your Score: ${playerScore}`)
     console.log(`Computer's Score: ${computerScore}`)
+}
+
+function startNew(){
+    playerScore = 0;
+    computerScore = 0;
+    console.log("Starting a new Game")
 }
 
 
