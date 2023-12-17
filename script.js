@@ -53,6 +53,10 @@ function startNew(){
     console.log("Starting a new Game")
 }
 
+function promptForNextMove() {
+    const playerMove = prompt("Enter your move (ROCK, PAPER, SCISSOR):").toUpperCase();
+    playRound(playerMove);
+}
 
 
 
