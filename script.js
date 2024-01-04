@@ -6,62 +6,81 @@ let GameWinner = '';
 
 
 
-function getComputerChoice() {
-    moveArray = ["Rock", "Paper", "Scissor"];
-    let randomMove = Math.floor(Math.random()* moveArray.length);
-    return moveArray[randomMove];
-
-}
-function playRound(playerSelection) {
-    let computerSelection = getComputerChoice();
-    if(playerSelection === computerSelection) {
-        roundWinner = "tie";
-    }
-    if((playerSelection === "ROCK" && computerSelection === "SCISSOR") ||
-    (playerSelection === "PAPER" && computerSelection === "ROCK") ||
-    (playerSelection === "SCISSOR" && computerSelection === "PAPER")) {
-        playerScore++
-        roundWinner = "Player";
-    }
-    if((playerSelection === "ROCK" && computerSelection === "PAPER") ||
-    (playerSelection === "PAPER" && computerSelection === "SCISSOR") ||
-    (playerSelection === "SCISSOR" && computerSelection === "ROCK")){
-        computerScore++
-        roundWinner = "Computer";
-    }
-    let startNew;
-
-    if((computerScore === 5) || (playerScore === 5)){
-        endGame();
-        setTimeout(startNew, 2000)
-      
-    }
-
-
-   
+function getComputerChoice(){
+    const moveArray = ["ROCK", "PAPER", "SCISSOR"]
+    randomMove = moveArray[Math.floor(Math.random() * moveArray.length)];
+    return randomMove;
 }
 
-function endGame(){
+function checkWinner(playerChoice, computerChoice){
+    if(playerChoice === computerChoice){
+        return "Tie";
+    }
+    if((playerChoice === "ROCK" && computerChoice === "SCISSOR") ||
+       (playerChoice === "PAPER" && computerChoice === "ROCK") ||
+       (playerChoice === "SCISSOR" && computerChoice === "PAPER")  
+    ){
+        return "Player";
+    }else {
+        return "Computer";
+    }
+}
+
+function playRound(playerChoice, computerChoice){
+
+    const result = checkWinner(playerChoice, computerChoice);
+    if(result == "Tie"){
+        return "It's a tie!";
+    } else if(result == "Player"){
+        return `you win! ${playerChoice} beats ${computerChoice}`;
+    }else {
+        return `you Lost! ${computerChoice} beats ${playerChoice}`;
+    }
+}
+
+function getPlayerChoice(){
+    const moveArray = ["ROCK", "PAPER", "SCISSOR"]
+    let validatedInput = false;
+    while(validatedInput == false){
+        const choice = prompt("Enter a Valid choice from ROCK, PAPER and SCISSOR").toUpperCase()
+        if(choice == null){
+            continue;
+        }
+        if(moveArray.includes(choice)){
+            validatedInput = true;
+            return choice;
+        }
+    }
+}
+
+function game(){
+    let scorePlayer = 0;
+    let scoreComputer = 0;
+    console.log("Welcome")
+    for(let i = 0; i < 5; i++){
+        const playerChoice = getPlayerChoice()
+        const computerChoice = getComputerChoice();
+        console.log(playRound(playerChoice, computerChoice))
+        console.log('---------------');
+        if(checkWinner(playerChoice, computerChoice) === "Player"){
+            scorePlayer++
+        }
+        else if(checkWinner(playerChoice, computerChoice)=== "Computer"){
+            scoreComputer++
+        }
+    }
     console.log("Game Over")
-    console.log(`Your Score: ${playerScore}`)
-    console.log(`Computer's Score: ${computerScore}`)
+    if(scorePlayer > scoreComputer){
+        console.log("You won the game")
+    }
+    else if(scoreComputer > scorePlayer){
+        console.log("You lose")
+    }
+    else {
+        console.log("It's a tie")
+    }
 }
-
-function startNew(){
-    playerScore = 0;
-    computerScore = 0;
-    console.log("Starting a new Game")
-}
-
-function promptForNextMove() {
-    const playerMove = prompt("Enter your move (ROCK, PAPER, SCISSOR):").toUpperCase();
-    playRound(playerMove);
-}
-
-
-
-
-
+game()
 
 
 
