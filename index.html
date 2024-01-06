@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1><span class="word1">Rock</span><span class="word2"> - Paper</span><span class="word3"> - Scissors</span></h1>
     <div id="choices">
-      <button id="btn1">Rock</button>
-      <button id="btn2">Paper</button>
-      <button id="btn3">Scissor</button>    
+        <button onclick="playRound('rock')">&#x270A</button>
+        <button onclick="playRound('paper')">✋</button>
+        <button onclick="playRound('scissors')">✌️</button>
     </div>
     <div id="result">
-        <h2>Result: </h2>
-        <div id="computerScore">computer Score = </div>
-        <div id="playerScore">Player Score = </div>
-        <div id="roundwinner">RoundWinner - </div>
-        <div id="gamewinner">GameWinner - </div>
+    <div id="playerDisplay">PLAYER: </div>
+    <div id="computerDisplay">COMPUTER: </div>
+    <div id="resultDisplay"></div>
     </div>
+
+
     <script src="script.js"></script>
 </body>
 </html>
