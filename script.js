@@ -3,6 +3,10 @@ const moveArray = ["rock", "paper", "scissors"]
 const playerDisplay = document.getElementById("playerDisplay");
 const computerDisplay = document.getElementById("computerDisplay");
 const resultDisplay = document.getElementById("resultDisplay");
+const scoreDisplay = document.getElementById("scoreDisplay");
+let roundPlayed = 0;
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice(){
     randomMove = moveArray[Math.floor(Math.random() * moveArray.length)]
@@ -28,17 +32,30 @@ function playRound(playerSelection){
             break;
 
     }
+
+    if(result == "YOU WIN!"){
+        playerScore++
+    }else{
+        computerScore++
+    }
    }
  
    playerDisplay.textContent = `PLAYER: ${playerSelection}`     
    computerDisplay.textContent = `COMPUTER: ${computerSelection}`  
-   resultDisplay.textContent = result;   
+   resultDisplay.textContent = result; 
+   scoreDisplay.textContent = `Score: Player - ${playerScore}, Computer - ${computerScore}`;  
+   roundPlayed++
+
+   if(roundPlayed == 6){
+    
+    alert(`Game Over! Final Scores: Player - ${playerScore}, Computer - ${computerScore}`)
+    endGame()
+   }
 }
 
-function game(){
-    let playerScore = 0;
-    let computerScore = 0;
-    for(let i = 0; i < 5; i++){
-        
-    }
+function endGame(){
+     playerScore = 0;
+     computerScore = 0;
+     roundPlayed = 0;
+   
 }

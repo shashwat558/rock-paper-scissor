@@ -9,14 +9,17 @@
 <body>
     <h1><span class="word1">Rock</span><span class="word2"> - Paper</span><span class="word3"> - Scissors</span></h1>
     <div id="choices">
-        <button onclick="playRound('rock')">&#x270A</button>
-        <button onclick="playRound('paper')">✋</button>
-        <button onclick="playRound('scissors')">✌️</button>
+        <button class="rock" onclick="playRound('rock')">&#x270A</button>
+        <button class="paper" onclick="playRound('paper')">✋</button>
+        <button class="scissors" onclick="playRound('scissors')">✌️</button>
     </div>
     <div id="result">
     <div id="playerDisplay">PLAYER: </div>
     <div id="computerDisplay">COMPUTER: </div>
     <div id="resultDisplay"></div>
+    <div id="playerScore">Player Score: </div>
+    <div id="scoreDisplay">Computer Score-  &  Player Score-  </div>
+
     </div>
 
 
